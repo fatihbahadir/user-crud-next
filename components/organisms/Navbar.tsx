@@ -9,7 +9,7 @@ const Navbar: React.FC = () => {
   const pathname = usePathname();
 
   return (
-    <nav className="text-white p-4 shadow-md">
+    <nav className="text-white p-4 shadow-md fixed top-0 w-full">
       <div className="flex justify-between items-center max-w-7xl mx-auto">
         <Logo />
         <div className="flex items-center justify-center">
