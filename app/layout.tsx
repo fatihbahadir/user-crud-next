@@ -27,7 +27,7 @@ export default function RootLayout({
             speed={200}
             shadow="0 0 10px #D3E97A,0 0 5px #D3E97A"
           />
-          <main className="flex flex-col justify-center max-w-7xl mx-auto px-4 text-white">
+          <main className="flex flex-col justify-center max-w-7xl mx-auto text-white">
             {children}
           </main>
         </div>

@@ -13,7 +13,7 @@ const NavLink: FC<NavLinkProps> = ({ href, children, isActive, className }) => {
     <Link
       href={href}
       className={`transition-colors ${
-        isActive ? 'text-white pointer-events-none' : 'text-gray-400 hover:text-white'
+        isActive ? 'text-white pointer-events-none underline underline-offset-8' : 'text-off-white hover:text-white'
       } ${className}`}
     >
       {children}

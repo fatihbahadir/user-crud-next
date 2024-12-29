@@ -4,8 +4,10 @@ interface TextProps {
     className?: string;
   }
   
-  export const Text: React.FC<TextProps> = ({ children, variant = 'p', className }) => {
+  const Text: React.FC<TextProps> = ({ children, variant = 'p', className }) => {
     const Component = variant;
     return <Component className={className}>{children}</Component>;
   };
+
+  export default Text
   

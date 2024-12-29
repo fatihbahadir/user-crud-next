@@ -8,8 +8,10 @@ interface ButtonProps {
   typeAttr?: "submit" | "reset"| "button" | undefined;
 }
 
-export const Button: React.FC<ButtonProps> = ({ children, onClick, className, disabled, typeAttr = "button" }) => (
+const Button: React.FC<ButtonProps> = ({ children, onClick, className, disabled, typeAttr = "button" }) => (
   <button type={typeAttr} className={`${className}`} disabled={disabled} onClick={onClick}>
     {children}
   </button>
 );
+
+export default Button
