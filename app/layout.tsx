@@ -20,14 +20,16 @@ export default function RootLayout({
           <NextTopLoader
             color="#D3E97A"
             initialPosition={0.08}
-            crawlSpeed={200}
+            crawlSpeed={100}
             height={3}
             crawl={true}
             easing="ease"
             speed={200}
             shadow="0 0 10px #D3E97A,0 0 5px #D3E97A"
           />
-          {children}
+          <main className="flex flex-col justify-center max-w-7xl mx-auto px-4 text-white">
+            {children}
+          </main>
         </div>
       </body>
     </html>

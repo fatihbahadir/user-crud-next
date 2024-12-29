@@ -1,24 +1,20 @@
-import Link from 'next/link';
-import React, { FC } from 'react';
-import Image from 'next/image';
-import { StaticImport } from 'next/dist/shared/lib/get-img-props';
+import { FC, ReactNode } from 'react';
+import NavLink from '../atoms/NavLink';
+import { Text } from '../atoms/Text';
 
 interface LinkWithIconProps {
   href: string;
   label: string;
-  icon: string | StaticImport; 
+  icon: ReactNode; 
   isActive: boolean;
 }
 
-const LinkWithIcon: FC<LinkWithIconProps> = ({ href, label, icon : Icon, isActive }) => {
+const LinkWithIcon: FC<LinkWithIconProps> = ({ href, label, icon, isActive }) => {
   return (
-    <Link
-      href={href}
-      className={`flex items-center justify-center space-x-2 text-off-white hover:text-white ${isActive ? 'text-white' : ''}`}
-    >
-     <Image src={Icon} alt={label} width={25} height={25}/>
-     <p>{label}</p> 
-    </Link>
+    <NavLink href={href} isActive={isActive} className="flex items-center space-x-2">
+      {icon}
+      <Text variant="span">{label}</Text>
+    </NavLink>
   );
 };
 
