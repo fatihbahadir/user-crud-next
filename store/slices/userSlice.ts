@@ -30,65 +30,73 @@ const userSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder
-      .addCase(fetchAllUsersRequest, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(fetchAllUsersSuccess, (state, action) => {
-        state.loading = false;
-        state.users = action.payload.users;
-      })
-      .addCase(fetchAllUsersFailure, (state, action) => {
-        state.loading = false;
-        state.error = action.payload.error;
-      })
-      .addCase(fetchUserRequest, (state) => {
-        state.loading = true;
-        state.error = null;
-        state.selectedUser = null;
-      })
-      .addCase(fetchUserSuccess, (state, action) => {
-        state.loading = false;
-        state.selectedUser = action.payload.user;
-      })
-      .addCase(fetchUserFailure, (state, action) => {
-        state.loading = false;
-        state.error = action.payload.error;
-      })
-      .addCase(deleteUserRequest, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(deleteUserSuccess, (state) => {
-        state.loading = false;
-      })
-      .addCase(deleteUserFailure, (state, action) => {
-        state.loading = false;
-        state.error = action.payload.error;
-      })
-      .addCase(updateUserRequest, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(updateUserSuccess, (state) => {
-        state.loading = false;
-      })
-      .addCase(updateUserFailure, (state, action) => {
-        state.loading = false;
-        state.error = action.payload.error;
-      })
-      .addCase(createUserRequest, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(createUserSuccess, (state) => {
-        state.loading = false;
-      })
-      .addCase(createUserFailure, (state, action) => {
-        state.loading = false;
-        state.error = action.payload.error;
-      });
+    // fetchAllUsers
+    builder.addCase(fetchAllUsersRequest, (state) => {
+      state.loading = true;
+      state.error = null;
+    });
+    builder.addCase(fetchAllUsersSuccess, (state, action) => {
+      state.loading = false;
+      state.users = action.payload.users;
+    });
+    builder.addCase(fetchAllUsersFailure, (state, action) => {
+      state.loading = false;
+      state.error = action.payload.error;
+    });
+
+    // fetchUser
+    builder.addCase(fetchUserRequest, (state) => {
+      state.loading = true;
+      state.error = null;
+      state.selectedUser = null;
+    });
+    builder.addCase(fetchUserSuccess, (state, action) => {
+      state.loading = false;
+      state.selectedUser = action.payload.user;
+    });
+    builder.addCase(fetchUserFailure, (state, action) => {
+      state.loading = false;
+      state.error = action.payload.error;
+    });
+
+    // deleteUser
+    builder.addCase(deleteUserRequest, (state) => {
+      state.loading = true;
+      state.error = null;
+    });
+    builder.addCase(deleteUserSuccess, (state) => {
+      state.loading = false;
+    });
+    builder.addCase(deleteUserFailure, (state, action) => {
+      state.loading = false;
+      state.error = action.payload.error;
+    });
+
+    // updateUser
+    builder.addCase(updateUserRequest, (state) => {
+      state.loading = true;
+      state.error = null;
+    });
+    builder.addCase(updateUserSuccess, (state) => {
+      state.loading = false;
+    });
+    builder.addCase(updateUserFailure, (state, action) => {
+      state.loading = false;
+      state.error = action.payload.error;
+    });
+
+    // createUser
+    builder.addCase(createUserRequest, (state) => {
+      state.loading = true;
+      state.error = null;
+    });
+    builder.addCase(createUserSuccess, (state) => {
+      state.loading = false;
+    });
+    builder.addCase(createUserFailure, (state, action) => {
+      state.loading = false;
+      state.error = action.payload.error;
+    });
   },
 });
 

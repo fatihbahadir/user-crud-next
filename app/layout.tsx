@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { METADATA } from "../constants/data";
 import Navbar from "@/components/organisms/Navbar";
 import NextTopLoader from "nextjs-toploader";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import ReduxProvider from "@/components/organisms/ReduxProvider";
 
 export const metadata: Metadata = METADATA;
 
@@ -15,6 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`bg-main-bg text-off-white`}>
+        <ReduxProvider>
         <div className="max-h-screen w-full">
           <Navbar />
           <NextTopLoader
@@ -30,7 +33,9 @@ export default function RootLayout({
           <main className="flex flex-col justify-center max-w-7xl mx-auto text-white">
             {children}
           </main>
+          <ToastContainer toastClassName={'font-main text-[14px] text-black'}/>
         </div>
+        </ReduxProvider>
       </body>
     </html>
   );
