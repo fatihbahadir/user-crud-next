@@ -19,9 +19,10 @@ const handleDelete = (selectedRow: number) => {
 const Users: React.FC = () => {
   const router = useRouter();
   const handleEdit = (selectedRow: number) => {
-      router.push(`/user/${selectedRow}`)
+      router.push(`/users/${selectedRow}`)
   };
-  
+
+
   return (
     <div className="py-4 mt-[90px] w-full">
       <DataGrid

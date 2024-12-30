@@ -1,5 +1,6 @@
 // molecules/Row.tsx
 import React from "react";
+import { Input } from "../atoms/Input";
 
 interface RowProps {
   data: string[];
@@ -12,7 +13,7 @@ const Row: React.FC<RowProps> = ({ data, isChecked, onCheckboxChange }) => {
   return (
     <tr className="hover:bg-gray-800 cursor-pointer" onClick={() => onCheckboxChange(!isChecked)}>
       <td className="p-2 border-b border-gray-800">
-        <input
+        <Input
           type="checkbox"
           checked={isChecked}
           onChange={(e) => onCheckboxChange(e.target.checked)}
