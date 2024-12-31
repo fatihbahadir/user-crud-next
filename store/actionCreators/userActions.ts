@@ -1,5 +1,5 @@
 import { createAction } from "@reduxjs/toolkit";
-import { CREATE_USER, DELETE_USER, FETCH_ALL_USERS, FETCH_USER, UPDATE_USER } from "../actionTypes/userActionTypes";
+import { CREATE_USER, DELETE_USER, FETCH_ALL_USERS, FETCH_USER, SET_LOADING, UPDATE_USER } from "../actionTypes/userActionTypes";
 import { CreateUserRequestPayload, FetchAllUsersSuccessPayload, FetchUserRequestPayload, FetchUserSuccessPayload, RequestErrorPayload, UpdateUserRequestPayload } from "@/types/userTypes";
 
 export const fetchAllUsersRequest = createAction(FETCH_ALL_USERS.REQUEST);
@@ -19,5 +19,7 @@ export const updateUserSuccess = createAction(UPDATE_USER.SUCCESS);
 export const updateUserFailure = createAction<RequestErrorPayload>(UPDATE_USER.ERROR);
 
 export const createUserRequest = createAction<CreateUserRequestPayload>(CREATE_USER.REQUEST);
-export const createUserSuccess = createAction(CREATE_USER.SUCCESS);
+export const createUserSuccess = createAction<CreateUserRequestPayload>(CREATE_USER.SUCCESS);
 export const createUserFailure = createAction<RequestErrorPayload>(CREATE_USER.ERROR);
+
+export const setLoading = createAction<boolean>(SET_LOADING);

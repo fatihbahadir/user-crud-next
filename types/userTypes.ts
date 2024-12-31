@@ -6,6 +6,7 @@ export interface UserType {
     phone_number: string
 }
 
+
 export interface FetchAllUsersSuccessPayload {
     users: UserType[]
 }

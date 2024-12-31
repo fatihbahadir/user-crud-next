@@ -1,10 +1,10 @@
 import { call, put, takeLatest } from "redux-saga/effects";
-import { DELETE_USER, FETCH_ALL_USERS } from "../actionTypes/userActionTypes";
-import { deleteUser, getAllUsers } from "@/services/api";
-import { deleteUserFailure, deleteUserSuccess, fetchAllUsersFailure, fetchAllUsersSuccess } from "../actionCreators/userActions";
+import { CREATE_USER, DELETE_USER, FETCH_ALL_USERS, FETCH_USER } from "../actionTypes/userActionTypes";
+import { createUser, deleteUser, getAllUsers, getUser } from "@/services/api";
+import { deleteUserFailure, deleteUserSuccess, fetchAllUsersFailure, fetchAllUsersSuccess, fetchUserFailure, fetchUserSuccess, createUserSuccess, createUserFailure, fetchAllUsersRequest } from "../actionCreators/userActions";
 import { showToast } from "../actionCreators/uiActions";
 import { v4 as uuid } from 'uuid';
-import { FetchUserRequestPayload } from "@/types/userTypes";
+import { CreateUserRequestPayload, FetchUserRequestPayload } from "@/types/userTypes";
 
 function* handleFetchAllUsers() {
     try {
@@ -14,7 +14,7 @@ function* handleFetchAllUsers() {
     } catch (err : any) {
         console.log(err.status);
         
-        const errorMsg = err.message ?? 'Something went wrong';
+        const errorMsg = err.response.data.message ? err.response.data.message : err.message ?? 'Something went wrong';
         if (err.status === 404) {
             yield put(showToast({
                 id: uuid(),
@@ -40,7 +40,7 @@ function* handleDeleteUser(action: { type: string; payload: FetchUserRequestPayl
             })
         ) 
     } catch (err : any) {
-        const errorMsg = err.message ?? 'Something went wrong';
+        const errorMsg = err.response.data.message ? err.response.data.message : err.message ?? 'Something went wrong';
         yield put(showToast({
             id: uuid(),
             type: 'error',
@@ -50,8 +50,51 @@ function* handleDeleteUser(action: { type: string; payload: FetchUserRequestPayl
     }
 }
 
-export default function* userSaga() {
-    yield takeLatest(FETCH_ALL_USERS.REQUEST, handleFetchAllUsers)
-    yield takeLatest(DELETE_USER.REQUEST, handleDeleteUser);
+function* handleFetchUser(action: { type: string, payload: FetchUserRequestPayload}) {
+    try {
+        const { id } = action.payload;
+        const { data } = yield call(getUser, { id });
+        yield put(fetchUserSuccess({
+            user: data.data
+        }))
+    }
+    catch (err : any) {
+        const errorMsg = err.response.data.message ? err.response.data.message : err.message ?? 'Something went wrong';
+        yield put(showToast({
+            id: uuid(),
+            type: 'error',
+            message: errorMsg
+        }))
+        yield put(fetchUserFailure({ error: errorMsg }))
+    }
+}
 
+function* handleCreateUser(action: { type: string, payload: CreateUserRequestPayload}) {
+    try {
+        yield call(createUser, action.payload);
+        yield put(createUserSuccess(action.payload));
+        yield put(
+            showToast({
+                id : uuid(),
+                type: 'success',
+                message: 'User created successfully'
+            })
+        )
+    }
+    catch(err : any) {
+        console.log(err.response.data.message)
+        const errorMsg = err.response.data.message ?? 'Something went wrong';
+        yield put(showToast({
+            id: uuid(),
+            type: 'error',
+            message: errorMsg
+        }))
+        yield put(createUserFailure({ error: errorMsg }))
+    }
+}
+export default function* userSaga() {
+    yield takeLatest(FETCH_ALL_USERS.REQUEST, handleFetchAllUsers);
+    yield takeLatest(DELETE_USER.REQUEST, handleDeleteUser);
+    yield takeLatest(FETCH_USER.REQUEST, handleFetchUser);
+    yield takeLatest(CREATE_USER.REQUEST, handleCreateUser);
 }

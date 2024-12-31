@@ -15,6 +15,7 @@ import {
   createUserRequest,
   createUserSuccess,
   createUserFailure,
+  setLoading,
 } from "@/store/actionCreators/userActions";
 import { UserState } from "@/types/userTypes";
 
@@ -44,7 +45,6 @@ const userSlice = createSlice({
       state.error = action.payload.error;
     });
 
-    // fetchUser
     builder.addCase(fetchUserRequest, (state) => {
       state.loading = true;
       state.error = null;
@@ -93,13 +93,17 @@ const userSlice = createSlice({
       state.loading = true;
       state.error = null;
     });
-    builder.addCase(createUserSuccess, (state) => {
+    builder.addCase(createUserSuccess, (state, action) => {
       state.loading = false;
+      state.users = [...state.users];
     });
     builder.addCase(createUserFailure, (state, action) => {
       state.loading = false;
       state.error = action.payload.error;
     });
+    builder.addCase(setLoading, (state, action) => {
+      state.loading = action.payload;
+    })
   },
 });
 
