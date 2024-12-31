@@ -15,7 +15,7 @@ function* handleFetchAllUsers() {
     } catch (err : any) {
         console.log(err.status);
         
-        const errorMsg = err.response.data.message ? err.response.data.message : err.message ?? 'Something went wrong';
+        const errorMsg = err?.response?.data?.message ? err.response.data.message : err.message ?? 'Something went wrong';
         if (err.status === 404) {
             yield put(showToast({
                 id: uuid(),
@@ -41,7 +41,7 @@ function* handleDeleteUser(action: { type: string; payload: FetchUserRequestPayl
             })
         ) 
     } catch (err : any) {
-        const errorMsg = err.response.data.message ? err.response.data.message : err.message ?? 'Something went wrong';
+        const errorMsg = err?.response?.data?.message ? err.response.data.message : err.message ?? 'Something went wrong';
         yield put(showToast({
             id: uuid(),
             type: 'error',
@@ -60,7 +60,7 @@ function* handleFetchUser(action: { type: string, payload: FetchUserRequestPaylo
         }))
     }
     catch (err : any) {
-        const errorMsg = err.response.data.message ? err.response.data.message : err.message ?? 'Something went wrong';
+        const errorMsg = err?.response?.data?.message ? err.response.data.message : err.message ?? 'Something went wrong';
         yield put(showToast({
             id: uuid(),
             type: 'error',
@@ -83,7 +83,7 @@ function* handleCreateUser(action: { type: string, payload: CreateUserRequestPay
         )
     }
     catch(err : any) {
-        const errorMsg = err.response.data.message ?? 'Something went wrong';
+        const errorMsg = err?.response?.data?.message ?? 'Something went wrong';
         yield put(showToast({
             id: uuid(),
             type: 'error',
@@ -135,7 +135,7 @@ function* handleUpdateUser(action: { type: string; payload: UpdateUserRequestPay
         );
 
     } catch (err: any) {
-        const errorMsg = err.response.data.message ?? 'Something went wrong';
+        const errorMsg = err?.response?.data?.message ?? 'Something went wrong';
         yield put(showToast({
             id: uuid(),
             type: 'error',
