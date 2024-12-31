@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import FormField from "../molecules/FormField";
 import Button from "../atoms/Button";
-import { CreateUserRequestPayload } from "@/types/userTypes";
+import { CreateUserRequestPayload, UserType } from "@/types/userTypes";
 import { useFormik } from "formik";
 import { validationSchema } from "@/constants/schemas";
 
@@ -29,8 +29,8 @@ const UserForm: React.FC<UserFormProps> = ({
     validateOnChange: true,
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      onSubmit(values);
-    }
+        onSubmit(values);
+    },
   });
 
   return (
@@ -42,7 +42,11 @@ const UserForm: React.FC<UserFormProps> = ({
         value={formik.values.name}
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
-        error={formik.touched.name && formik.errors.name ? formik.errors.name : undefined}
+        error={
+          formik.touched.name && formik.errors.name
+            ? formik.errors.name
+            : undefined
+        }
       />
       <FormField
         label="Surname"
@@ -51,7 +55,11 @@ const UserForm: React.FC<UserFormProps> = ({
         value={formik.values.surname}
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
-        error={formik.touched.surname && formik.errors.surname ? formik.errors.surname : undefined}
+        error={
+          formik.touched.surname && formik.errors.surname
+            ? formik.errors.surname
+            : undefined
+        }
       />
       <FormField
         label="Email"
@@ -61,7 +69,11 @@ const UserForm: React.FC<UserFormProps> = ({
         value={formik.values.email}
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
-        error={formik.touched.email && formik.errors.email ? formik.errors.email : undefined}
+        error={
+          formik.touched.email && formik.errors.email
+            ? formik.errors.email
+            : undefined
+        }
       />
       <FormField
         label="Phone Number"
@@ -70,7 +82,11 @@ const UserForm: React.FC<UserFormProps> = ({
         value={formik.values.phone_number}
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
-        error={formik.touched.phone_number && formik.errors.phone_number ? formik.errors.phone_number : undefined}
+        error={
+          formik.touched.phone_number && formik.errors.phone_number
+            ? formik.errors.phone_number
+            : undefined
+        }
       />
       <div className="flex justify-end space-x-4">
         <Button

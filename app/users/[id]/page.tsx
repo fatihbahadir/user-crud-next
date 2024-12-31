@@ -19,7 +19,7 @@ const UserDetailPage = ({ params }: { params: Promise<{ id: string }> }) => {
     if (id === "new" && formData) {
       dispatch(createUserRequest(formData)); 
     } else if (formData) {
-      dispatch(updateUserRequest({ user: formData }));
+      dispatch(updateUserRequest({ user: {id : id, ...formData }}));
     }
     router.push("/users");
   };
