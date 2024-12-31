@@ -11,7 +11,7 @@ export const fetchUserSuccess = createAction<FetchUserSuccessPayload>(FETCH_USER
 export const fetchUserFailure = createAction<RequestErrorPayload>(FETCH_USER.ERROR);    
 
 export const deleteUserRequest = createAction<FetchUserRequestPayload>(DELETE_USER.REQUEST);
-export const deleteUserSuccess = createAction(DELETE_USER.SUCCESS);
+export const deleteUserSuccess = createAction<FetchUserRequestPayload>(DELETE_USER.SUCCESS);
 export const deleteUserFailure = createAction<RequestErrorPayload>(DELETE_USER.ERROR);
 
 export const updateUserRequest = createAction<UpdateUserRequestPayload>(UPDATE_USER.REQUEST);

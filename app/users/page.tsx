@@ -1,37 +1,55 @@
-"use client"
-import React from "react";
+"use client";
+import React, { useEffect } from "react";
 import DataGrid from "@/components/organisms/DataGrid";
-import { useRouter } from 'next/navigation'
-
-const columns = ["Name", "Surname", "Email", "Phone Number"];
-const data = [
-  ["Alice", "BlaBla", "alice@example.com", "05527083461"],
-  ["Bob", "BlaBla","bob@example.com", "05324718482"],
-  ["Charlie", "BlaBla", "charlie@example.com", "054361614171"],
-];
-
-
-
-const handleDelete = (selectedRow: number) => {
-  console.log("Delete rows:", selectedRow);
-};
+import { useRouter } from "next/navigation";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteUserRequest, fetchAllUsersRequest } from "@/store/actionCreators/userActions";
+import { selectUserLoading, selectUsers } from "@/store/selectors/userSelector";
+import Loading from "@/components/atoms/Loading";
+import Text from "@/components/atoms/Text";
 
 const Users: React.FC = () => {
   const router = useRouter();
-  const handleEdit = (selectedRow: number) => {
-      router.push(`/users/${selectedRow}`)
+  const dispatch = useDispatch();
+  const users = useSelector(selectUsers);
+  const loading = useSelector(selectUserLoading);
+
+  const handleEdit = (selectedRow: string) => {
+    router.push(`/users/${selectedRow}`);
   };
 
+  const handleDelete = (selectedRow: string) => {
+    dispatch(deleteUserRequest({ id: selectedRow }));
+  };
+
+  useEffect(() => { 
+    dispatch(fetchAllUsersRequest());
+  }, []);
 
   return (
-    <div className="py-4 mt-[90px] w-full">
-      <DataGrid
-        columns={columns}
-        data={data}
-        onEdit={handleEdit}
-        onDelete={handleDelete}
-      />
-    </div>
+    <>
+      {loading ? (
+        <Loading />
+      ) : (
+        <div className="py-4 mt-[90px] w-full">
+          {
+            users.length > 0 ?
+            <DataGrid
+            columns={
+                ["Name", "Surname", "Email", "Phone Number"]
+            }
+            data={users}
+            onEdit={handleEdit}
+            onDelete={handleDelete}
+          /> : 
+          <div className="flex justify-center">
+            <Text className="text-3xl" variant="h2"> No users found please add users first</Text>
+          </div>
+          }
+
+        </div>
+      )}
+    </>
   );
 };
 

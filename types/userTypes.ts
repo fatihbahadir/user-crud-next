@@ -1,8 +1,9 @@
 export interface UserType {
     id: string,
     name : string,
+    surname: string,
     email : string,
-    phoneNumber: string
+    phone_number: string
 }
 
 export interface FetchAllUsersSuccessPayload {
@@ -26,8 +27,9 @@ export interface UpdateUserRequestPayload {
 
 export interface CreateUserRequestPayload {
     name: string;
+    surname: string;
     email: string;
-    phoneNumber: string;
+    phone_number: string;
 }
 
 export interface UserState {

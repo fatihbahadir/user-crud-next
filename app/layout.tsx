@@ -33,8 +33,8 @@ export default function RootLayout({
           <main className="flex flex-col justify-center max-w-7xl mx-auto text-white">
             {children}
           </main>
-          <ToastContainer toastClassName={'font-main text-[14px] text-black'}/>
         </div>
+        <ToastContainer theme="dark" toastClassName={'text-off-white'}/>
         </ReduxProvider>
       </body>
     </html>

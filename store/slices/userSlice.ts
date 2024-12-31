@@ -21,7 +21,7 @@ import { UserState } from "@/types/userTypes";
 const initialState: UserState = {
   users: [],
   selectedUser: null,
-  loading: false,
+  loading: true,
   error: null,
 };
 
@@ -64,9 +64,12 @@ const userSlice = createSlice({
       state.loading = true;
       state.error = null;
     });
-    builder.addCase(deleteUserSuccess, (state) => {
+
+    builder.addCase(deleteUserSuccess, (state, action) => {
       state.loading = false;
+      state.users = state.users.filter((user) => user.id !== action.payload.id);
     });
+    
     builder.addCase(deleteUserFailure, (state, action) => {
       state.loading = false;
       state.error = action.payload.error;

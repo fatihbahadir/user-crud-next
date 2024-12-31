@@ -2,12 +2,13 @@
 import React, { useState } from "react";
 import Row from "../molecules/Row";
 import Button from "../atoms/Button";
+import { UserType } from "@/types/userTypes";
 
 interface DataGridProps {
   columns: string[];
-  data: string[][];
-  onEdit: (selectedRow: number) => void;
-  onDelete: (selectedRow: number) => void;
+  data: UserType[];
+  onEdit: (selectedRow: string) => void;
+  onDelete: (selectedRow: string) => void;
 }
 
 const DataGrid: React.FC<DataGridProps> = ({
@@ -16,17 +17,17 @@ const DataGrid: React.FC<DataGridProps> = ({
   onEdit,
   onDelete,
 }) => {
-  const [selectedRow, setSelectedRow] = useState<number | null>(null);
+  const [selectedRow, setSelectedRow] = useState<string | null>(null);
 
-  const handleCheckboxChange = (index: number | null) => {
-    setSelectedRow(index);
+  const handleCheckboxChange = (id: string | null) => {
+    setSelectedRow(id);
   };
 
   return (
     <div className="overflow-x-auto w-full">
       <div className="flex w-full justify-end space-x-2 mb-4 py-4 px-2">
         <Button
-          onClick={() => selectedRow !== null && onEdit(selectedRow)}
+          onClick={() => selectedRow && onEdit(selectedRow)}
           className={`flex items-center justify-center py-[5px] rounded-lg w-[80px] bg-off-white text-gray-800 transition-all${
             selectedRow
             ? "opacity-100 "
@@ -36,7 +37,7 @@ const DataGrid: React.FC<DataGridProps> = ({
           Edit
         </Button>
         <Button
-          onClick={() => selectedRow !== null && onDelete(selectedRow)}
+          onClick={() => selectedRow && onDelete(selectedRow)}
           className={`flex items-center justify-center py-[5px] rounded-lg w-[80px] bg-gray-800  text-off-white transition-all${
             selectedRow
             ? "opacity-100 "
@@ -61,15 +62,20 @@ const DataGrid: React.FC<DataGridProps> = ({
           </tr>
         </thead>
         <tbody>
-          {data.map((rowData, index) => (
+          {data.map((user) => (
             <Row
-              key={index + 1}
-              data={rowData}
-              isChecked={selectedRow === index + 1}
-              onCheckboxChange={(isChecked) =>
-                handleCheckboxChange(isChecked ? index + 1: null)
-              }
-            />
+            key={user.id}
+            data={[
+              user.name,
+              user.surname,
+              user.email,
+              user.phone_number,
+            ]}
+            isChecked={selectedRow === user.id}
+            onCheckboxChange={(isChecked) =>
+              handleCheckboxChange(isChecked ? user.id : null)
+            }
+          />
           ))}
         </tbody>
       </table>
