@@ -28,6 +28,15 @@ A responsive user management application built using Next.js. This app allows us
     npm install
     ```
 
+## Environment Configuration
+
+Create a `.env` file in the root of the project and add the following configuration for the backend API base URL:
+```
+NEXT_PUBLIC_BASE_URL=http://localhost:8888
+```
+This environment variable will be used in the application to interact with the backend API. Make sure to replace the URL with the appropriate base URL if needed.
+
+
 ## Development
 
 Run the development server with:
@@ -37,13 +46,6 @@ Run the development server with:
     ```
 Visit http://localhost:3000 in your browser to see the app in action.
 
-## Environment Configuration
-
-Create a `.env` file in the root of the project and add the following configuration for the backend API base URL:
-```
-NEXT_PUBLIC_BASE_URL=http://localhost:8888
-```
-This environment variable will be used in the application to interact with the backend API. Make sure to replace the URL with the appropriate base URL if needed.
 
 ## Technologies Used
 - Next.js: Framework for building React applications with server-side rendering.
