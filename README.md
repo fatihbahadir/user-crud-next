@@ -31,10 +31,11 @@ A responsive user management application built using Next.js. This app allows us
 ## Development
 
 Run the development server with:
+
     ```bash
-    npm run dev
+    npm install
     ```
-    Visit http://localhost:3000 in your browser to see the app in action.
+Visit http://localhost:3000 in your browser to see the app in action.
 
 ## Environment Configuration
 
