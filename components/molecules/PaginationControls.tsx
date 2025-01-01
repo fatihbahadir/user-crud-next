@@ -15,7 +15,7 @@ const PaginationControls: React.FC<PaginationControlsProps> = ({
   onPrev,
   onNext,
 }) => (
-  <div className="flex justify-between items-center mt-4">
+  <div className="flex justify-between items-center mt-4 p-4 bg-main-bg text-off-white">
     <Button
       onClick={onPrev}
       className={`text-primary ${

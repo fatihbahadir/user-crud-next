@@ -34,59 +34,67 @@ const DataGrid: React.FC<DataGridProps> = ({
   };
 
   return (
-    <div className="overflow-x-auto w-full">
-      <div className="flex w-full justify-end space-x-2 mb-4 py-4 px-2">
-      <Button
+    <div className="w-full">
+      <div className="flex flex-col sm:flex-row sm:justify-end gap-4 mb-4 py-4">
+        <Button
           onClick={() => selectedRow && onEdit(selectedRow)}
-          className={`flex items-center justify-center py-[5px] rounded-lg w-[80px] bg-off-white text-gray-800 transition-all disabled:opacity-50 disabled:cursor-not-allowed`}
+          className={`flex items-center justify-center py-2 px-4 rounded-lg w-full sm:w-[80px] bg-off-white text-gray-800 transition-all disabled:opacity-50 disabled:cursor-not-allowed`}
           disabled={!selectedRow}
         >
           Edit
         </Button>
         <Button
           onClick={() => selectedRow && onDelete(selectedRow)}
-          className={`flex items-center justify-center py-[5px] rounded-lg w-[80px] bg-gray-800  text-off-white transition-all 
-           disabled:opacity-50 disabled:cursor-not-allowed`}
+          className={`flex items-center justify-center py-2 px-4 rounded-lg w-full sm:w-[80px] bg-gray-800 text-off-white transition-all disabled:opacity-50 disabled:cursor-not-allowed`}
           disabled={!selectedRow}
         >
           Delete
         </Button>
       </div>
-      <table className="w-full border-collapse">
-        <thead>
-          <tr>
-            <th className="p-2 text-left border-b border-gray-800"></th>
-            {columns.map((col, index) => (
-              <th key={index} className="p-2 font-bold border-b border-gray-800">
-                {col}
-              </th>
+
+      <div className="overflow-x-auto mb-4">
+        <table className="w-full border-collapse sm:table-auto">
+          <thead>
+            <tr>
+              <th className="p-2 text-left border-b border-gray-800"></th>
+              {columns.map((col, index) => (
+                <th
+                  key={index}
+                  className="p-2 font-bold text-left border-b border-gray-800"
+                >
+                  {col}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {paginatedData.map((user) => (
+              <Row
+                key={user.id}
+                data={[
+                  user.name,
+                  user.surname,
+                  user.email,
+                  user.phone_number,
+                ]}
+                isChecked={selectedRow === user.id}
+                onCheckboxChange={(isChecked) =>
+                  handleCheckboxChange(isChecked ? user.id : null)
+                }
+              />
             ))}
-          </tr>
-        </thead>
-        <tbody>
-          {paginatedData.map((user) => (
-            <Row
-              key={user.id}
-              data={[
-                user.name,
-                user.surname,
-                user.email,
-                user.phone_number,
-              ]}
-              isChecked={selectedRow === user.id}
-              onCheckboxChange={(isChecked) =>
-                handleCheckboxChange(isChecked ? user.id : null)
-              }
-            />
-          ))}
-        </tbody>
-      </table>
-      <PaginationControls
-        currentPage={currentPage}
-        totalPages={totalPages}
-        onPrev={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-        onNext={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
-      />
+          </tbody>
+        </table>
+      </div>
+
+      <div className="sticky bottom-0 w-full bg-main-bg">
+        <PaginationControls
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPrev={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+          onNext={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+        />
+      </div>
     </div>
   );
 };

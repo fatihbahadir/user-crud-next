@@ -6,6 +6,7 @@ interface NavLinkProps {
   children: React.ReactNode; 
   isActive: boolean; 
   className?: string; 
+  onClick?: () => void;
 }
 
 const NavLink: FC<NavLinkProps> = ({ href, children, isActive, className }) => {
