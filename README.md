@@ -42,7 +42,7 @@ This environment variable will be used in the application to interact with the b
 Run the development server with:
 
 ```bash
-    npm install
+    npm run dev
 ```
 Visit http://localhost:3000 in your browser to see the app in action.
 
