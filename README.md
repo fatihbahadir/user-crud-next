@@ -41,9 +41,9 @@ This environment variable will be used in the application to interact with the b
 
 Run the development server with:
 
-    ```bash
+```bash
     npm install
-    ```
+```
 Visit http://localhost:3000 in your browser to see the app in action.
 
 
