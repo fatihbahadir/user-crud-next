@@ -1,6 +1,6 @@
 # User CRUD with Next.js
 
-A user management application built using Next.js. This app allows users to perform CRUD (Create, Read, Update, Delete) operations on user profiles, with form validation and state management.
+A responsive user management application built using Next.js. This app allows users to perform CRUD (Create, Read, Update, Delete) operations on user profiles, with form validation and state management.
 
 ## Features
 - Create, Read, Update, and Delete users with a simple and intuitive interface.
@@ -8,23 +8,33 @@ A user management application built using Next.js. This app allows users to perf
 - Styled UI using TailwindCSS.
 - Global state management with React-Redux and handling side effects using Redux-Saga.
 - Notifications with React-Toastify.
+- Responsieness with TailwindCSS.
+
 
 ## Installation
 
 1. Clone the repository:
+    ```bash
     git clone https://github.com/fatihbahadir/user-crud-next.git
+    ```
 
 2. Navigate to the project directory:
+    ```bash
     cd user-crud-next
+    ```
 
 3. Install the dependencies using npm:
+    ```bash
     npm install
+    ```
 
 ## Development
 
 Run the development server with:
+    ```bash
     npm run dev
-Visit http://localhost:3000 in your browser to see the app in action.
+    ```
+    Visit http://localhost:3000 in your browser to see the app in action.
 
 ## Environment Configuration
 

@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <main className="h-screen flex flex-col items-center justify-center gap-6 px-4 sm:px-8 md:px-12 lg:px-16">
+    <div className="h-screen flex flex-col items-center justify-center gap-6 px-4 sm:px-8 md:px-12 lg:px-16">
       <Text
         variant="h1"
         className="text-3xl sm:text-4xl md:text-5xl font-bold text-off-white text-center"
@@ -22,6 +22,6 @@ export default function Home() {
       >
         Go to Users
       </Link>
-    </main>
+    </div>
   );
 }

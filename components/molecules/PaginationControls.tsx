@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import Button from "@/components/atoms/Button";
+import Text from "../atoms/Text";
 
 interface PaginationControlsProps {
   currentPage: number;
@@ -25,9 +26,9 @@ const PaginationControls: React.FC<PaginationControlsProps> = ({
     >
       Previous
     </Button>
-    <span className="text-primary">
+    <Text variant="span" className="text-primary">
       Page {currentPage} of {totalPages}
-    </span>
+    </Text>
     <Button
       onClick={onNext}
       className={`text-primary ${

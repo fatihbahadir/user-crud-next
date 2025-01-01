@@ -3,6 +3,7 @@
 import React from "react";
 import NavLink from "../atoms/NavLink";
 import { usePathname } from "next/navigation";
+import Button from "../atoms/Button";
 
 interface HamburgerMenuProps {
   isOpen: boolean;
@@ -19,12 +20,12 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({ isOpen, onClose }) => {
       } transition-transform duration-300 ease-in-out z-50`}
     >
       <div className="flex flex-col items-center justify-center h-full gap-8">
-      <button
+      <Button
           onClick={onClose}
           className="absolute top-4 right-4 text-white text-5xl"
         >
           &times;
-        </button>
+        </Button>
         <NavLink
           href="/users"
           isActive={pathname === "/users"}
