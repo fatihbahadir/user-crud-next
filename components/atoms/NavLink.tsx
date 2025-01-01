@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { FC } from 'react';
 
 interface NavLinkProps {
   href: string;
@@ -9,7 +8,7 @@ interface NavLinkProps {
   onClick?: () => void;
 }
 
-const NavLink: FC<NavLinkProps> = ({ href, children, isActive, className }) => {
+const NavLink: React.FC<NavLinkProps> = ({ href, children, isActive, className }) => {
   return (
     <Link
       href={href}
